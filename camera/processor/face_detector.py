@@ -38,10 +38,11 @@ class FaceDetector(object):
         
         # 取得した座標情報を元に、cv2.rectangleを使ってframe上に
         # 顔の位置を描画する
-        num=str(len(faces))
+        num=1
+        font = cv2.FONT_HERSHEY_SIMPLEX
         for (x,y,w,h) in faces:
             cv2.rectangle(frame,(x,y),(x+w,y+h),(255,255,0),2)
-        font = cv2.FONT_HERSHEY_SIMPLEX
-        cv2.putText(frame,num,(100,100),font,4,(255,255,255),2,cv2.LINE_AA)
+            cv2.putText(frame,str(num),(x,y),font,4,(255,255,255),2,cv2.LINE_AA)
+            num=num+1
         # frameを戻り値として返す
         return frame
